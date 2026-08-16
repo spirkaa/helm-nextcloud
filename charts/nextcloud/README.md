@@ -136,7 +136,11 @@ The following table lists the configurable parameters of the nextcloud chart and
 | `redis.auth.password`                                        | The password redis uses                                 | `''`                                        |
 | `cronjob.enabled`                                            | Whether to enable/disable cronjob                       | `false`                                     |
 | `cronjob.lifecycle.postStartCommand`                         | Specify deployment lifecycle hook postStartCommand      | `nil`                                       |
-| `cronjob.lifecycle.preStopCommand`                           | Specify deployment lifecycle hook preStopCommand        | `nil`                                       |
+| `cronjob.lifecycle.preStopCommand`                           | Specify deployment lifecycle hook preStopCommand      | `nil`                                       |
+| `cronjobs.cronjobs.concurrencyPolicy`                        | How to treat concurrent executions: `Allow`, `Forbid` or `Replace` | `Forbid`                |
+| `cronjobs.cronjobs.suspend`                                  | Whether the schedule of the cron job is paused    | `false`                                     |
+| `cronjobs.cronjobs.backoffLimit`                             | Maximum retry attempts before a cron job is failed    | `2`                                         |
+| `cronjobs.cronjobs.activeDeadlineSeconds`                    | Deadline in seconds after which a cron job is aborted | `600`                                       |
 | `service.type`                                               | Kubernetes Service type                                 | `ClusterIP`                                 |
 | `service.loadBalancerIP`                                     | LoadBalancerIp for service type LoadBalancer            | `nil`                                       |
 | `service.nodePort`                                           | NodePort for service type NodePort                      | `nil`                                       |
