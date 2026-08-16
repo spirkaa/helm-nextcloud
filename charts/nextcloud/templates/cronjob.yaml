@@ -11,8 +11,9 @@ metadata:
     app.kubernetes.io/instance: {{ $.Release.Name }}
     app.kubernetes.io/managed-by: {{ $.Release.Service }}
 spec:
+  suspend: {{ $cronjob.suspend | default false }}
   schedule: {{ $cronjob.schedule | quote }}
-  concurrencyPolicy: Forbid
+  concurrencyPolicy: {{ $cronjob.concurrencyPolicy | default "Forbid" }}
   jobTemplate:
     metadata:
       labels:
@@ -21,7 +22,8 @@ spec:
         app.kubernetes.io/instance: {{ $.Release.Name }}
         app.kubernetes.io/managed-by: {{ $.Release.Service }}
     spec:
-      backoffLimit: 2
+      backoffLimit: {{ $cronjob.backoffLimit | default 2 }}
+      activeDeadlineSeconds: {{ $cronjob.activeDeadlineSeconds | default 600 }}
       template:
         metadata:
           labels:

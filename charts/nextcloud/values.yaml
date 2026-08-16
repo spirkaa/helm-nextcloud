@@ -331,6 +331,18 @@ cronjobs:
     - name: cron
       schedule: "*/5 * * * *"
       command: php -f /var/www/html/cron.php
+      # Whether the schedule of the CronJob is paused
+      # (defaults to false if not set)
+      suspend: null
+      # How to treat concurrent executions: Allow, Forbid or Replace
+      # (defaults to Forbid if not set)
+      concurrencyPolicy: null
+      # Maximum number of retry attempts before the job is considered failed
+      # (defaults to 2 if not set)
+      backoffLimit: null
+      # Deadline in seconds after which the job is aborted and counted as failed
+      # (defaults to 600 if not set)
+      activeDeadlineSeconds: null
 
 service:
   type: ClusterIP
